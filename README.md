@@ -1,10 +1,22 @@
 print("hello,viewers")
 from tkinter import *
+from tkinter.ttk import *
 
 root=Tk()
-t=Text(root)
+bframe1=Frame(root)
+bframe1.pack()
+text_frame1=Frame(root)
+text_frame1
+text_frame1.pack()
+style=Style()
+style.configure('W.TButton',font=('calibri',20,'bold',),fg='yellow',bg="pink")
+style.map('W.TButton', foreground = [('active', '!disabled', 'blue')],
+                     background = [('active', 'green')])
+
+t=Text(text_frame1,width=35,height=3)
 t.grid(row=5,column=6)
-l=Label(root,text="result:")
+l=Label(text_frame1,text="result:")
+l.grid()
 def one():
     t.insert(END,"1")
 def two():
@@ -32,7 +44,7 @@ def add():
 def min():
     t.insert(END,"-")
 def div():
-    t.insert(END,"//")
+    t.insert(END,"/")
 def mod():
     t.insert(END,"%")
 
@@ -44,23 +56,32 @@ def show():
     output=t.get(0.0,"end-1c")
     res=eval(output)
     #t.insert(0.0,res)
-    l.config(text=res)            
-one=Button(root,text="1",command=one)
-two=Button(root,text="2",command=two)
-three=Button(root,text="3",command=three)
-four=Button(root,text="4",command=four)
-five=Button(root,text="5",command=five)
-six=Button(root,text="6",command=six)
-seven=Button(root,text="7",command=seven)
-eight=Button(root,text="8",command=eight)
-nine=Button(root,text="9",command=nine)
-zero=Button(root,text="0",command=zero)
-plus=Button(root,text="+",command=add)
-minus=Button(root,text="-",command=min)
-division=Button(root,text="/",command=div)
-multiplication=Button(root,text="*",command=mul)
-modulus=Button(root,text="%",command=mod)
-show1=Button(root,text="=",command=show)
+    l.config(text=res)  
+def clear():
+    t.delete(0.0,END)
+def delete():
+    t.delete("line.end")  
+        
+              
+one=Button(bframe1,text="1",style='W.TButton',command=one)
+two=Button(bframe1,text="2",style='W.TButton',command=two)
+three=Button(bframe1,text="3",style='W.TButton',command=three)
+four=Button(bframe1,text="4",style='W.TButton',command=four)
+five=Button(bframe1,text="5",style='W.TButton',command=five)
+six=Button(bframe1,text="6",style='W.TButton',command=six)
+seven=Button(bframe1,text="7",style='W.TButton',command=seven)
+eight=Button(bframe1,text="8",style='W.TButton',command=eight)
+nine=Button(bframe1,text="9",style='W.TButton',command=nine)
+zero=Button(bframe1,text="0",style='W.TButton',command=zero)
+plus=Button(bframe1,text="+",style='W.TButton',command=add)
+minus=Button(bframe1,text="-",style='W.TButton',command=min)
+division=Button(bframe1,text="/",style='W.TButton',command=div)
+multiplication=Button(bframe1,text="*",style='W.TButton',command=mul)
+modulus=Button(bframe1,text="%",style='W.TButton',command=mod)
+show1=Button(bframe1,text="=",style='W.TButton',command=show)
+clearbutton=Button(bframe1,text="clear",style='W.TButton',command=clear)
+deleteButton=Button(bframe1,text="Delete",style='W.TButton',command=delete)
+
 
 one.grid(row=0,column=1)
 two.grid(row=0,column=2)
@@ -78,10 +99,13 @@ division.grid(row=2,column=4)
 multiplication.grid(row=3,column=3)
 modulus.grid(row=3,column=1)
 show1.grid(row=3,column=4)
+clearbutton.grid(row=4,column=4)
+deleteButton.grid(row=4,column=3)
 
 
 
 
-l.grid(row=6,column=6)
+
+
 
 root.mainloop()
